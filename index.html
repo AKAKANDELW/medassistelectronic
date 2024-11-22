@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="/bootstrap-5.3.3-examples/assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>MedAssist</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="/bootstrap-5.3.3-examples/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  /* Updated Styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f8fa; /* Light gray background */
+  }
+  
+  /* Navbar */
+  .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #00a1e4; /* Change to soft blue */
+  }
+  .navbar .nav-link {
+    font-weight: 600;
+    color: #00a1e4;
+    transition: color 0.3s;
+  }
+  .navbar .nav-link:hover {
+    color: #007bb5;
+  }
+
+  /* Carousel */
+  .carousel-item {
+    height: 80vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  }
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  /* Service Cards */
+  .card-cover {
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card-cover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Featurette Sections */
+  .featurette-divider {
+    margin: 3rem 0;
+  }
+  .featurette h2 {
+    color: #007bb5;
+    font-weight: bold;
+  }
+  .featurette p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #007bb5;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+</style>
+    
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+              id="bd-theme"
+              type="button"
+              aria-expanded="false"
+              data-bs-toggle="dropdown"
+              aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    
+<header data-bs-theme="dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MedAssist</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page">Home</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="admin.php">Receptionist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="doctor_login.html">Doctor Portal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="lab_technician_login.php">Laboratory</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="login.html">Patient Portal</a>
+          </li>
+          
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="background-image: url('image4.jpg');">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>MedAssist Electronic Health Record System</h1>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" style="background-image: url('51642.jpg');">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>The Future of Records Management</h1>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" style="background-image: url('26825.jpg');">
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h2>Transforming Patient Data into Actionable Insights with MedAssist</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <style>
+  .carousel-item {
+    height: 100vh; /* Adjust height as needed */
+    background-size: cover;
+    background-position: center;
+  }
+  </style>
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+  <div class="b-example-divider"></div>
+  <div class="container px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 border-bottom">Services</h2>
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('image6.jpg'); background-size: cover; background-position: center;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> Streamline patient care with MedAssist</h3>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('health services.jpg'); background-size: cover; background-position: center;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> Real-time access to vital health information.</h3>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('img2.PNG'); background-size: cover; background-position: center;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Monitor patient progress and treatment plans effectively </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="b-example-divider"></div>
+    
+ <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Enhanced Accessibility to Lab Result</h2>
+        <p class="lead">This application provides patients at the clinic with secure online access to their lab results. This increased accessibility will enable patients to conveniently view and track their results, promoting timely awareness and understanding of their health status.
+
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img src="mlt.webp" class="img-fluid mx-auto" alt="Description of Image" width="500" height="500">
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading fw-normal lh-1">Streamlined Communication</h2>
+        <p class="lead">The user-friendly interface and web-based software application facilitates seamless communication between patients and doctors via text based messages. This leads to improved information exchange. Quicker response times and efficient coordination of follow-up care, ultimately exchanging the overall patient-doctor communication experience.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="image5.webp" class="img-fluid mx-auto" alt="Description of Image" width="500" height="500">
+    </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Schedule Appointment</h2>
+        <p class="lead">Easily book your appointment at a time that works best for you. MedAssit allows you to select your preferred date and time, ensuring a seamless experience. Whether for a consultation, meeting, or service, we’re here to accommodate your needs.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="image4.jpg" class="img-fluid mx-auto" alt="Description of Image" width="500" height="500">
+    </div>
+    </div>
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+  <hr class="featurette-divider">
+  <div class="container">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+      <div class="col mb-3">
+        <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+        <p class="text-body-secondary">© 2024</p>
+      </div>
+  
+      <div class="col mb-3">
+  </div>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2024 MedAssist, All rights reserved.</p>
+    <p><a href="#" style="color: #e3f2fd;">Privacy Policy</a> | <a href="#" style="color: #e3f2fd;">Terms of Service</a></p>
+  </footer>
+</main>
+<script src="/bootstrap-5.3.3-examples/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

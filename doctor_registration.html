@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Doctor Registration</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --primary-light: #4285f4;
+            --primary-dark: #0d47a1;
+            --background: #f0f2f5;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-primary: #333;
+            --text-secondary: #666;
+            --button-text: #ffffff;
+            --shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+        }
+
+        .dark-mode {
+            --primary-color: #4285f4;
+            --primary-light: #64b5f6;
+            --primary-dark: #1565c0;
+            --background: #1a1a1a;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --text-primary: #fff;
+            --text-secondary: #ccc;
+            --button-text: #ffffff;
+            --shadow: 20px 20px 60px #0a0a0a, -20px -20px 60px #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+            opacity: 0.1;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 500px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        input, select {
+            padding: 0.8rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            color: var(--text-primary);
+            background: transparent;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--button-text);
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.2);
+        }
+
+        .form-actions button:hover {
+            background-color: var(--primary-light);
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+<div class="background-animation"></div>
+
+<div class="form-container">
+    <button class="theme-toggle" id="themeToggle">
+        <i class='bx bx-moon'></i>
+    </button>
+    
+    <div class="form-title">New Doctor Registration</div>
+    
+    <form action="submit_doctor.php" method="POST">
+        <label for="doctorName">Doctor Name:</label>
+        <input type="text" id="doctorName" name="doctorName" required>
+
+        <label for="specialization">Specialization:</label>
+        <input type="text" id="specialization" name="specialization" required>
+
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="address">Residential Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <div class="form-actions">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        icon.classList.toggle('bx-moon');
+        icon.classList.toggle('bx-sun');
+    });
+
+    particlesJS('particles', {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: '#1a73e8' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.5 },
+            size: { value: 3, random: true },
+            line_linked: { enable: true, distance: 150, color: '#1a73e8', opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 2, out_mode: 'out' }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } }
+        },
+        retina_detect: true
+    });
+</script>
+
+</body>
+</html>

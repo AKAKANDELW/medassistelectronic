@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9f4fc; /* Light blue background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
+            width: 100%;
+            max-width: 400px; /* Set a maximum width */
+            box-sizing: border-box;
+            text-align: center;
+        }
+        h2 {
+            color: #007BFF; /* Heading color */
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #007BFF; /* Border color */
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #0056b3; /* Focus border color */
+            outline: none;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF; /* Button color */
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #0056b3; /* Button hover color */
+        }
+        .back-button {
+            background-color: #f44336; /* Red color for back button */
+            color: white;
+            font-weight: normal;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #c62828; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Doctor Login</h2>
+    <form action="doctor_login.php" method="POST">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    <button type="button" class="back-button" onclick="goBack()">Back to Home</button>
+</div>
+
+<script>
+    function goBack() {
+        window.location.href = 'index.html'; // Redirect to index.html
+    }
+</script>
+
+</body>
+</html>

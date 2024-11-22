@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration Form</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --primary-light: #4285f4;
+            --primary-dark: #0d47a1;
+            --background: #f0f2f5;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-primary: #333;
+            --text-secondary: #666;
+            --button-text: #ffffff;
+            --shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+        }
+
+        .dark-mode {
+            --primary-color: #4285f4;
+            --primary-light: #64b5f6;
+            --primary-dark: #1565c0;
+            --background: #1a1a1a;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --text-primary: #fff;
+            --text-secondary: #ccc;
+            --button-text: #ffffff;
+            --shadow: 20px 20px 60px #0a0a0a, -20px -20px 60px #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+            opacity: 0.1;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 700px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group-full {
+            grid-column: 1 / 3;
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        input, select {
+            padding: 0.8rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            color: var(--text-primary);
+            background: transparent;
+            outline: none;
+        }
+
+        .form-actions {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--button-text);
+        }
+
+        .form-actions button[type="submit"] {
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.2);
+        }
+
+        .form-actions button[type="submit"]:hover {
+            background-color: var(--primary-light);
+        }
+
+        .form-actions button[type="reset"] {
+            background-color: #dc3545;
+        }
+
+        .form-actions button[type="reset"]:hover {
+            background-color: #c82333;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+<div class="background-animation"></div>
+
+<div class="form-container">
+    <button class="theme-toggle" id="themeToggle">
+        <i class='bx bx-moon'></i>
+    </button>
+    
+    <div class="form-title">Patient Registration Form</div>
+    
+    <form action="registration.php" method="POST">
+        <div class="form-group">
+            <div>
+                <label for="patient-id">Patient ID Number</label>
+                <input type="text" id="patient-id" name="patient-id">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="full-name">Full Patient Name</label>
+                <input type="text" id="full-name" name="full-name" required>
+            </div>
+            <div>
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="blood-group">Blood Group</label>
+                <select id="blood-group" name="blood-group" required>
+                    <option value="">Select</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                </select>
+            </div>
+            <div>
+                <label for="sex">Sex</label>
+                <select id="sex" name="sex" required>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="height">Height (cm)</label>
+                <input type="number" id="height" name="height" placeholder="cm" required>
+            </div>
+            <div>
+                <label for="weight">Weight (kg)</label>
+                <input type="number" id="weight" name="weight" placeholder="kg" required>
+            </div>
+        </div>
+
+        <div class="form-group form-group-full">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div>
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" required>
+            </div>
+        </div>
+
+        <div class="form-group form-group-full">
+            <label for="primary-physician">Primary Care Physician</label>
+            <input type="text" id="primary-physician" name="primary-physician">
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        </div>
+
+        <!-- New Password Section -->
+        <div class="form-group">
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">Save</button>
+            <button type="reset">Discard</button>
+            <button onclick="location.href='admin_dashboard.php'" type="button" style="background-color: var(--primary-dark);">
+                Back to Dashboard
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        icon.classList.toggle('bx-moon');
+        icon.classList.toggle('bx-sun');
+    });
+
+    particlesJS('particles', {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: '#1a73e8' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.5 },
+            size: { value: 3, random: true },
+            line_linked: { enable: true, distance: 150, color: '#1a73e8', opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 2, out_mode: 'out' }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } }
+        },
+        retina_detect: true
+    });
+</script>
+
+</body>
+</html>
